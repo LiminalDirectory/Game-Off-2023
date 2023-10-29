@@ -1,0 +1,21 @@
+* {margin: 0px;}
+body {
+  background-color: #000000;
+  overflow: hidden;
+	height: 100%;
+  width: 100%;
+}
+/*@font-face {
+  font-family: FiveBySeven;
+  src: url("assets/misc/font.ttf");
+}*/
+audio {
+  position: absolute;
+  left: -100%;
+  top: -100%;
+}
+.game {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
