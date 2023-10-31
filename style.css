@@ -5,10 +5,10 @@ body {
 	height: 100%;
   width: 100%;
 }
-/*@font-face {
+@font-face {
   font-family: FiveBySeven;
   src: url("assets/misc/font.ttf");
-}*/
+}
 audio {
   position: absolute;
   left: -100%;
