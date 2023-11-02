@@ -10,6 +10,7 @@ Stats:
 The Map:
 - Crossing Swords: Battle (Awards gold)
 - Skull In Front Of Crossing Swords: Elite Battle (Awards more gold and a relic)
+- Sword Through Skull?: Boss Fight
 - Scale (Animal Part): Scale Trader
 - Chest: Choose a Relic
 - Question Mark: Random Event
