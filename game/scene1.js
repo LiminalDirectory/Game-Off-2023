@@ -36,8 +36,8 @@ class Scene1 extends Phaser.Scene {
     this.input.keyboard.on('keydown-ESC', function () {gameState.escape = true});
 
     //Create 2 counters to be used in the update function in order to play the characters' idle animations at the right times
-    gameState.dragonCounter = 0;
-    gameState.snakeCounter = 0;
+    gameState.dragonCounter = 90 + Math.floor(Math.random() * 90);
+    gameState.snakeCounter = 90 + Math.floor(Math.random() * 90);
   }
   update() {
     //If a certain interval has been reached, play an idle animation
