@@ -43,11 +43,13 @@ class Scene1 extends Phaser.Scene {
     //If a certain interval has been reached, play an idle animation
     gameState.dragonCounter++;
     gameState.snakeCounter++;
-    if (gameState.dragonCounter >= 960 + Math.floor(Math.random() * 360 - 120)) {
+    if (gameState.dragonCounter >= 180 + Math.floor(Math.random() * 180 - 60)) {
       gameState.dragon.anims.play("dragonIdle", true);
+      gameState.dragonCounter = 0;
     };
-    if (gameState.snakeCounter >= 540 + Math.floor(Math.random() * 180 - 60)) {
+    if (gameState.snakeCounter >= 180 + Math.floor(Math.random() * 180 - 60)) {
       gameState.snake.anims.play("snakeIdle", true);
+      gameState.snakeCounter = 0;
     };
 
     //If ESC is pressed, go back to the title
