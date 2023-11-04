@@ -1,0 +1,66 @@
+/*
+Task List:
+- Set characters to interactive
+  - On hover: enlarge
+  - On click: set gameState.character to a 1 (dragon) or a 2 (snake), then set gameState.nextLevel to true
+- Add next scene code
+*/
+class Scene1 extends Phaser.Scene {
+  constructor() {
+    super({ key: 'Scene1' });
+  }
+  preload() {
+    this.load.spritesheet("sheet1", "assets/sprites/32x32sprites1.png", { frameWidth: 32, frameHeight: 32 });
+
+    //Load a custom font
+    loadFont("CustomFont", "assets/misc/font.ttf");
+  }
+  create() {
+    //Create character sprites and style them so the player can choose
+    gameState.dragon = this.add.sprite(96, 200, "sheet1").setDepth(2).setFrame(6);
+    gameState.snake = this.add.sprite(129, 200, "sheet1).setDepth(2).setFrame(21);
+
+    //Create player animations & torch animation
+    this.anims.create({
+      key: 'dragonIdle',
+      frames: this.anims.generateFrameNumbers("sheet1", { start: 6, end: 14 }),
+      frameRate: 8,
+      repeat: 1
+    });
+    
+    this.anims.create({
+      key: 'snakeIdle',
+      frames: this.anims.generateFrameNumbers("player", { start: 21, end: 24 }),
+      frameRate: 8,
+      repeat: 1
+    });
+
+    //If ESC is pressed, go back to the title
+    this.input.keyboard.on('keydown-ESC', function () {gameState.escape = true});
+
+    //Create 2 counters to be used in the update function in order to play the characters' idle animations at the right times
+    gameState.dragonCounter = 0;
+    gameState.snakeCounter = 0;
+  }
+  update() {
+    //If a certain interval has been reached, play an idle animation
+    gameState.dragonCounter++;
+    gameState.snakeCounter++;
+    if (gameState.dragonCounter >= 15000 + Math.floor(Math.random() * 6000 - 2000)) {
+      gameState.dragon.anims.play("dragonIdle", true);
+    };
+    if (gameState.snakeCounter >= 9000 + Math.floor(Math.random() * 3000 - 1000)) {
+      gameState.snake.anims.play("snakeIdle", true);
+    };
+
+    //If ESC is pressed, go back to the title
+    if (gameState.escape) {
+      gameState.escape = false;
+      //Stop playing the game's music
+      //document.querySelector(".music").load();
+      //document.querySelector(".music").pause();
+      this.scene.stop("Scene1");
+      this.scene.start("Title");
+    };
+  };
+};
