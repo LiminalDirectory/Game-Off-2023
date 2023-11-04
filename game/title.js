@@ -35,7 +35,7 @@ class Title extends Phaser.Scene {
     //On click: start the game
     playButton.on('pointerup', () => {
       gameState.nextLevel = true;
-    });*/
+    });
   }
   update() {
     if (gameState.nextLevel) {
