@@ -18,7 +18,7 @@ class Scene1 extends Phaser.Scene {
   create() {
     //Create character sprites and style them so the player can choose
     gameState.dragon = this.add.sprite(96, 200, "sheet1").setDepth(2).setFrame(6);
-    gameState.snake = this.add.sprite(129, 200, "sheet1).setDepth(2).setFrame(21);
+    gameState.snake = this.add.sprite(129, 200, "sheet1").setDepth(2).setFrame(21);
 
     //Create player animations & torch animation
     this.anims.create({
