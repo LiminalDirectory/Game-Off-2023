@@ -1,9 +1,13 @@
 /*
 Task List:
-- Set characters to interactive
-  - On hover: enlarge
-  - On click: set gameState.character to a 1 (dragon) or a 2 (snake), then set gameState.nextLevel to true
-- Add next scene code
+[x] Set characters to interactive
+  [ ] On hover: enlarge
+  [ ] On click: give description of character and allow player to confirm their choice
+    [ ] On confirm: set gameState.character to a 1 (dragon) or a 2 (snake), then set gameState.nextLevel to true
+[ ] Add next scene code
+[ ] Add title "Choose Your Character"
+[ ] Add map background
+[ ] Add character text under each (e.g. "Dragon" or "Snake")
 */
 class Scene1 extends Phaser.Scene {
   constructor() {
@@ -14,21 +18,21 @@ class Scene1 extends Phaser.Scene {
   }
   create() {
     //Create character sprites and style them so the player can choose
-    gameState.dragon = this.add.sprite(144, 112, "sheet1").setDepth(2).setScale(2).setFrame(6);
-    gameState.snake = this.add.sprite(256, 112, "sheet1").setDepth(2).setScale(2).setFrame(21);
+    gameState.dragon = this.add.sprite(144, 112, "sheet1").setDepth(2).setScale(2).setFrame(6).setInteractive();
+    gameState.snake = this.add.sprite(256, 112, "sheet1").setDepth(2).setScale(2).setFrame(21).setInteractive();
 
     //Create player animations & torch animation
     this.anims.create({
       key: 'dragonIdle',
       frames: this.anims.generateFrameNumbers("sheet1", { start: 6, end: 14 }),
-      frameRate: 8,
+      frameRate: 9,
       repeat: 0
     });
     
     this.anims.create({
       key: 'snakeIdle',
       frames: this.anims.generateFrameNumbers("sheet1", { start: 21, end: 25 }),
-      frameRate: 8,
+      frameRate: 10,
       repeat: 1
     });
 
