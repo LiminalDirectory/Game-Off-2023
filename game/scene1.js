@@ -27,7 +27,7 @@ class Scene1 extends Phaser.Scene {
     
     this.anims.create({
       key: 'snakeIdle',
-      frames: this.anims.generateFrameNumbers("player", { start: 21, end: 24 }),
+      frames: this.anims.generateFrameNumbers("sheet1", { start: 21, end: 24 }),
       frameRate: 8,
       repeat: 1
     });
