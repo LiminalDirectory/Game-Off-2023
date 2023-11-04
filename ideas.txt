@@ -1,15 +1,20 @@
-Idea: A turnbased deckbuilding roguelike where scales are your currency, and, as the enemies get tougher, you must trade your scales for stronger abilities, at the detriment of your stats.
+Idea: A turnbased deckbuilding roguelike where scales are your currency, and, as the enemies get tougher, you must trade your scales for stronger abilities, at the detriment of your "stats".
 
-Stats:
-- Attack: Used to calculate damage of non-magical attacks
-- Special Attack: Used to calculate damage of magical attacks
-- Health: Used to calculate player health
-- Defense: Used to calculate how much damage is taken from enemy attacks
-- Energy: Used to calculate how many energy point the player has every turn
+Statuses:
+- Fury: Increases attack damage by an ammount equal fury. Wears off at the end of the player's turn
+- Block: Decreases damage by an ammount equal to block. Wears off at the start of the your turn
+- Defensive: Block does not wear off at the start of your turn
+- Enraged: Fury does not wear off at the end of your turn
+- Spikes: When attacked, deal damage to the attacker equal to spikes
+- Poison: Lose health equal to poison at the start of your turn. Decreases by 1 at the end of your turn
+- Weak: Decreases damage by an ammount equal to weak. Wears off at the end of the your turn
+- Slow: Decreases shield by an ammount equal to slow. Wears off at the end of your turn
+- Stun: Cannot take actions. Wears off at the end of your turn
+- Regen: Regain health equal to regen at the start of your turn. Decreases by 1 at the end of your turn
 
 The Map:
-- Crossing Swords: Battle (Awards gold)
-- Skull In Front Of Crossing Swords: Elite Battle (Awards more gold and a relic)
+- Crossing Swords: Battle (Awards gold. Allows you to upgrade one card from a selection of 3 cards from your deck)
+- Skull In Front Of Crossing Swords: Elite Battle (Awards more gold and a relic. Allows you to upgrade one card from a selection of 3 cards from you deck)
 - Sword Through Skull?: Boss Fight
 - Scale (Animal Part): Scale Trader
 - Chest: Choose a Relic
@@ -32,11 +37,15 @@ Forest Enemies:
 - Magic Moth: Elite enemy
 
 "Classes":
-- Dragon: The dragon will be built around using powerful offensive magic to deal damage. The dragon will have high special attack and energy to start, as well as cards that will deal magic damage (and maybe inflict status effects). It will trade scales to gain better cards, however, the dragon's energy will be directly tied to the number of scales it has.
-- Snake: The snake will be built around dealing damage and inflicting statuses with physical attacks. The snake will have high health and attack to start, as well as some status inflicting cards. It will trade scales to gain better (stronger status) cards, however, the snake's health will be directly tied to the number of scales it has.
-- Pangolin: The pangolin will be built around dealing damage based on its block. The pangolin will have high health and defense to start, as well as block increasing cards and cards that deal damage based on block. It will trade scales to gain better cards, however, the pangolin's health will be directly tied to the number of scales it has.
+- Dragon: The dragon will be built around using powerful offensive magic to deal damage. The dragon will have high energy to start, as well as cards that will deal magic damage (and maybe inflict status effects). It will trade scales to gain better cards, however, the dragon's energy will be directly tied to the number of scales it has.
+- Snake: The snake will be built around dealing damage and inflicting statuses with physical attacks. The snake will have high health to start, as well as some status inflicting cards. It will trade scales to gain better (stronger status) cards, however, the snake's health will be directly tied to the number of scales it has.
+- Pangolin (HARD): The pangolin will be built around dealing damage based on its block. The pangolin will have high health and defense to start, as well as block increasing cards and cards that deal damage based on block. It will trade scales to gain better cards, however, the pangolin's health will be directly tied to the number of scales it has.
 - Butterfly (HARD): The butterfly will be built around using powerful magic to apply statuses to itself and opponents, and deal damage based off of those statuses. The butterfly will have very high energy and high defense, but very low health to start, as well as defensive and offensive status cards. It will trade scales to gain better (stronger status) cards, however, the butterfly's defense will be directly tied to the number of scales it has.
 
-Challenge Board: At the end of each floor/map, you will be presented with challenges, which, if completed on the next floor, will award you with scales.
+Challenge Board: When leaving the scale trader, you will be presented with 3 challenges, which, if completed on the next floor, will award you with scales.
 
-Scale Trader: The same as the shop, except the price is in scales rather than gold. If the player does not have enough scales to purchase anything, they will be allow to choose one card/relic for free, however, they must also choose one cursed relic.
+Scale Trader: The same as the shop, except the price is in scales rather than gold. When leaving the scale trader, the player will be presented with the challenge board.
+
+Dragon Starting Cards:
+- (cost) Card Name, Rarity Color (white < blue < yellow < red): effect
+- [start with 4] (1) Arcane Shield, White: Add 5 block
