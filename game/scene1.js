@@ -11,9 +11,6 @@ class Scene1 extends Phaser.Scene {
   }
   preload() {
     this.load.spritesheet("sheet1", "assets/sprites/32x32sprites1.png", { frameWidth: 32, frameHeight: 32 });
-
-    //Load a custom font
-    loadFont("CustomFont", "assets/misc/font.ttf");
   }
   create() {
     //Create character sprites and style them so the player can choose
