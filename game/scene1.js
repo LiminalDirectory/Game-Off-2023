@@ -14,8 +14,8 @@ class Scene1 extends Phaser.Scene {
   }
   create() {
     //Create character sprites and style them so the player can choose
-    gameState.dragon = this.add.sprite(96, 200, "sheet1").setDepth(2).setFrame(6);
-    gameState.snake = this.add.sprite(129, 200, "sheet1").setDepth(2).setFrame(21);
+    gameState.dragon = this.add.sprite(144, 112, "sheet1").setDepth(2).setFrame(6);
+    gameState.snake = this.add.sprite(256, 112, "sheet1").setDepth(2).setFrame(21);
 
     //Create player animations & torch animation
     this.anims.create({
@@ -43,10 +43,10 @@ class Scene1 extends Phaser.Scene {
     //If a certain interval has been reached, play an idle animation
     gameState.dragonCounter++;
     gameState.snakeCounter++;
-    if (gameState.dragonCounter >= 15000 + Math.floor(Math.random() * 6000 - 2000)) {
+    if (gameState.dragonCounter >= 960 + Math.floor(Math.random() * 360 - 120)) {
       gameState.dragon.anims.play("dragonIdle", true);
     };
-    if (gameState.snakeCounter >= 9000 + Math.floor(Math.random() * 3000 - 1000)) {
+    if (gameState.snakeCounter >= 540 + Math.floor(Math.random() * 180 - 60)) {
       gameState.snake.anims.play("snakeIdle", true);
     };
 
