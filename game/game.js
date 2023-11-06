@@ -4,6 +4,7 @@
 const gameState = {
   nextScene: false, //Scene flag for changing to the next scene
   escape: false, //Is set to true in some scene files when the player presses esc
+  map: [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [3], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [3], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [3], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [5]], //Will eventually hold the 2d array for the game map
 };
 
 //Config creates the entire scene, you can change backgroundColor and game size here without breaking any other code
