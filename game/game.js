@@ -11,7 +11,7 @@ const config = {
   height: 225,
   width: 400,
   backgroundColor: 0x051A24, //A Very Dark Blue
-  scene: [Title, Scene1],
+  scene: [Title, Scene1, Scene2],
   pixelArt: true, //Turns off anti-aliasing
   physics: {
     default: 'arcade',
