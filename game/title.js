@@ -7,15 +7,18 @@ class Title extends Phaser.Scene {
     //this.load.spritesheet("socks", "assets/sprites/socks.png", { frameWidth: 16, frameHeight: 16 });
   }
   create() {
+    //Create map background image
+    this.add.sprite(200, 112, "mapBG").setDepth(0);
+    
     //Create and style the title
-    let titleText = this.add.text(200, 10, 'Game Title', { fontFamily: 'FiveBySeven', fontSize: '50px', fill: '#f4f4f4', align: "center", lineSpacing: -25 });
+    let titleText = this.add.text(200, 10, 'Game Title', { fontFamily: 'FiveBySeven', fontSize: '50px', fill: '#051A24', align: "center", lineSpacing: -25 });
     titleText.setOrigin(titleText.halfWidth, 0);
-    titleText.setShadow(-6, 6, "#454545", 0);
+    titleText.setShadow(-6, 6, "#E6994C", 0);
     titleText.setDepth(1);
 
     
     //Create, style, and set interactions for the play button
-    let playButton = this.add.text(200, 100, 'Play Game', { fontFamily: 'FiveBySeven', fontSize: '30px', fill: '#f4f4f4' });
+    let playButton = this.add.text(200, 100, 'Play Game', { fontFamily: 'FiveBySeven', fontSize: '30px', fill: '#051A24' });
     playButton.setOrigin(playButton.halfWidth, 0);
     playButton.setDepth(1);
     playButton.setInteractive();
