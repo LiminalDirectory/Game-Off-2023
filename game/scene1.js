@@ -19,24 +19,24 @@ class Scene1 extends Phaser.Scene {
   }
   create() {
     //Create map background image
-    this.add.sprite(0, 0, "mapBG").setDepth(0);
+    this.add.sprite(200, 112, "mapBG").setDepth(0);
     
     //Create character sprites and style them so the player can choose
     gameState.dragon = this.add.sprite(144, 112, "sheet1").setDepth(2).setScale(2).setFrame(6).setInteractive();
     gameState.snake = this.add.sprite(256, 112, "sheet1").setDepth(2).setScale(2).setFrame(21).setInteractive();
 
     //Create and style the title
-    let titleText = this.add.text(200, 30, "Choose Your Character", { fontFamily: "FiveBySeven", fontSize: "50px", fill: "#f4f4f4", align: "center", lineSpacing: -25 });
+    let titleText = this.add.text(200, 30, "Choose Your Character", { fontFamily: "FiveBySeven", fontSize: "35px", fill: "#051A24", align: "center", lineSpacing: -25 });
     titleText.setOrigin(titleText.halfWidth, 0);
-    titleText.setShadow(-6, 6, "#454545", 0);
+    titleText.setShadow(-3, 3, "#E6994C", 0);
     titleText.setDepth(1);
 
     //Create & style the class name texts
-    let dragonText = this.add.text(144, 144, "Dragon", { fontFamily: "FiveBySeven", fontSize: "20px", fill: "#f4f4f4" });
+    let dragonText = this.add.text(144, 144, "Dragon", { fontFamily: "FiveBySeven", fontSize: "20px", fill: "#051A24" });
     dragonText.setOrigin(dragonText.halfWidth, 0);
     dragonText.setDepth(1);
     
-    let snakeText = this.add.text(256, 144, "Snake", { fontFamily: "FiveBySeven", fontSize: "20px", fill: "#f4f4f4" });
+    let snakeText = this.add.text(256, 144, "Snake", { fontFamily: "FiveBySeven", fontSize: "20px", fill: "#051A24" });
     snakeText.setOrigin(snakeText.halfWidth, 0);
     snakeText.setDepth(1);
     
