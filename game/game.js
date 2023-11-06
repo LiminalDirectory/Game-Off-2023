@@ -4,7 +4,11 @@
 const gameState = {
   nextScene: false, //Scene flag for changing to the next scene
   escape: false, //Is set to true in some scene files when the player presses esc
-  map: [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [3], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [3], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [3], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [5]], //Will eventually hold the 2d array for the game map
+  mapF: 0, //Will eventually hold the 2d array for the forest map
+  mapC: 0, //Will eventually hold the 2d array for the cave map
+  mapT: 0, //Will eventually hold the 2d array for the taiga map
+  mapM: 0, //Will eventually hold the 2d array for the mountain map
+  mapV: 0, //Will eventually hold the 2d array for the volcano map
 };
 
 //Config creates the entire scene, you can change backgroundColor and game size here without breaking any other code
