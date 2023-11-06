@@ -7,7 +7,7 @@ body {
 }
 @font-face {
   font-family: FiveBySeven;
-  src: url("assets/misc/font.ttf");
+  src: url("assets/misc/5x7Edit.ttf");
 }
 audio {
   position: absolute;
