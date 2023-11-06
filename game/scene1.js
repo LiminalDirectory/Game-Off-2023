@@ -1,14 +1,3 @@
-/*
-Task List:
-[x] Set characters to interactive
-  [x] On hover: enlarge
-  [ ] On click: give description of character and allow player to confirm their choice
-    [ ] On confirm: set gameState.character to a 1 (dragon) or a 2 (snake), then set gameState.nextLevel to true
-[x] Add next scene code
-[x] Add title "Choose Your Character"
-[x] Add map background
-[x] Add character text under each (e.g. "Dragon" or "Snake")
-*/
 class Scene1 extends Phaser.Scene {
   constructor() {
     super({ key: 'Scene1' });
@@ -20,7 +9,7 @@ class Scene1 extends Phaser.Scene {
   create() {
     //Create map background image
     this.add.sprite(200, 112, "mapBG").setDepth(0);
-    
+
     //Create character sprites and style them so the player can choose
     gameState.dragon = this.add.sprite(144, 112, "sheet1").setDepth(2).setScale(2).setFrame(6).setInteractive();
     gameState.snake = this.add.sprite(256, 112, "sheet1").setDepth(2).setScale(2).setFrame(21).setInteractive();
@@ -35,11 +24,11 @@ class Scene1 extends Phaser.Scene {
     let dragonText = this.add.text(144, 144, "Dragon", { fontFamily: "FiveBySeven", fontSize: "20px", fill: "#051A24" });
     dragonText.setOrigin(dragonText.halfWidth, 0);
     dragonText.setDepth(1);
-    
+
     let snakeText = this.add.text(256, 144, "Snake", { fontFamily: "FiveBySeven", fontSize: "20px", fill: "#051A24" });
     snakeText.setOrigin(snakeText.halfWidth, 0);
     snakeText.setDepth(1);
-    
+
     //Create player animations & torch animation
     this.anims.create({
       key: 'dragonIdle',
@@ -47,7 +36,7 @@ class Scene1 extends Phaser.Scene {
       frameRate: 9,
       repeat: 0
     });
-    
+
     this.anims.create({
       key: 'snakeIdle',
       frames: this.anims.generateFrameNumbers("sheet1", { start: 21, end: 25 }),
@@ -59,31 +48,33 @@ class Scene1 extends Phaser.Scene {
     gameState.dragon.on('pointerover', () => {
       gameState.dragon.setScale(2.2);
     });
-    
+
     //No hover: reset color and scale
     gameState.dragon.on('pointerout', () => {
       gameState.dragon.setScale(2);
     });
-    
+
     //On click: start the game
-    //gameState.dragon.on('pointerup', () => {
-    //  gameState.nextLevel = true;
-    //});
+    gameState.dragon.on('pointerup', () => {
+      gameState.character = 1;
+      gameState.nextScene = true;
+    });
 
     //On hover: change color and scale
     gameState.snake.on('pointerover', () => {
       gameState.snake.setScale(2.2);
     });
-    
+
     //No hover: reset color and scale
     gameState.snake.on('pointerout', () => {
       gameState.snake.setScale(2);
     });
-    
+
     //On click: start the game
-    //gameState.snake.on('pointerup', () => {
-    //  gameState.nextLevel = true;
-    //});
+    gameState.snake.on('pointerup', () => {
+      gameState.character = 2;
+      gameState.nextScene = true;
+    });
 
     //If ESC is pressed, go back to the title
     this.input.keyboard.on('keydown-ESC', function () {gameState.escape = true});
@@ -110,7 +101,7 @@ class Scene1 extends Phaser.Scene {
       this.scene.stop("Scene1");
       this.scene.start("Scene2");
     };
-    
+
     //If ESC is pressed, go back to the title
     if (gameState.escape) {
       gameState.escape = false;
