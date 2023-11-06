@@ -4,7 +4,7 @@ class Title extends Phaser.Scene {
   }
   preload() {
     //Load required sprites
-    //this.load.spritesheet("socks", "assets/sprites/socks.png", { frameWidth: 16, frameHeight: 16 });
+    this.load.image("mapBG", "assets/sprites/MapBG.png");
   }
   create() {
     //Create map background image
