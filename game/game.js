@@ -11,6 +11,12 @@ const gameState = {
   mapV: 0, //Will eventually hold the 2d array for the volcano map
 };
 
+makeMap(gameState.mapF);
+makeMap(gameState.mapC);
+makeMap(gameState.mapT);
+makeMap(gameState.mapM);
+makeMap(gameState.mapV);
+
 //Config creates the entire scene, you can change backgroundColor and game size here without breaking any other code
 const config = {
   height: 225,
