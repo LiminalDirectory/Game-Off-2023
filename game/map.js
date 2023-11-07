@@ -33,7 +33,28 @@ function makeMap(map) {
   for (let i = 0; i < 8; i++) {
     //25% Chance for each random event after the first 4 to not be used
     if (i > 3 && generateNum(4, 0) === 0) {continue};
+    if (!mapArray[locations[i]].includes(0)) {continue};
     let locationY = generateNum(mapArray[locations[i]].length, 0);
     if (mapArray[locations[i]][locationY] === 0) {mapArray[locations[i]][locationY] = 4} else {i--};
   };
+
+  //Generate item/relic locations (between 5 and 10)
+  locations = [generateNum(4, 0), generateNum(4, 5), generateNum(4, 10), generateNum(4, 15), generateNum(4, 0), generateNum(4, 5), generateNum(4, 10), generateNum(4, 15), generateNum(4, 5), generateNum(4, 15)];
+  for (let i = 0; i < 10; i++) {
+    //75% Chance for each random event after the first 5 to not be used
+    if (i > 4 && generateNum(4, 0) != 0) {continue};
+    if (!mapArray[locations[i]].includes(0)) {continue};
+    let locationY = generateNum(mapArray[locations[i]].length, 0);
+    if (mapArray[locations[i]][locationY] === 0) {mapArray[locations[i]][locationY] = 3} else {i--};
+  };
+
+  //Change 8 battles to elite battles
+  locations = [generateNum(4, 0), generateNum(4, 5), generateNum(4, 10), generateNum(4, 15), generateNum(4, 0), generateNum(4, 5), generateNum(4, 10), generateNum(4, 15)];
+  for (let i = 0; i < 8; i++) {
+    if (!mapArray[locations[i]].includes(0)) {continue};
+    let locationY = generateNum(mapArray[locations[i]].length, 0);
+    if (mapArray[locations[i]][locationY] === 0) {mapArray[locations[i]][locationY] = 1} else {i--};
+  };
+
+  map = mapArray;
 };
