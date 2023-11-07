@@ -5,7 +5,7 @@ Task List
 [ ] Animation for returning to the map
 [ ] Enlarge location on hover
 [ ] Destroy lines to non-chosen locations on click
-[ ] Add map key
+[x] Add map key
 */
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -13,11 +13,11 @@ class Scene2 extends Phaser.Scene {
   }
   preload() {
     this.load.spritesheet("sheet1", "assets/sprites/32x32sprites1.png", { frameWidth: 32, frameHeight: 32 });
-    this.load.image("mapBG", "assets/sprites/MapBG.png");
+    this.load.image("keyMapBG", "assets/sprites/KeyMapBG.png");
   }
   create() {
     //Create map background image
-    this.add.sprite(200, 112, "mapBG").setDepth(0);
+    this.add.sprite(200, 112, "keyMapBG").setDepth(0);
 
     //On hover: change scale
     gameState.dragon.on('pointerover', () => {
@@ -40,10 +40,10 @@ class Scene2 extends Phaser.Scene {
   }
   update() {
     //If a condition is met, go to next scene
-    if (gameState.nextScene) {
-      this.scene.stop("Scene2");
-      this.scene.start("Scene3");
-    };
+    //if (gameState.nextScene) {
+    //  this.scene.stop("Forest");
+    //  this.scene.start("Shop");
+    //};
 
     //If ESC is pressed, go back to the title
     if (gameState.escape) {
@@ -51,7 +51,7 @@ class Scene2 extends Phaser.Scene {
       //Stop playing the game's music
       //document.querySelector(".music").load();
       //document.querySelector(".music").pause();
-      this.scene.stop("Scene2");
+      this.scene.stop("Forest");
       this.scene.start("Title");
     };
   };
