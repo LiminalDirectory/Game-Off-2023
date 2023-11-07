@@ -7,9 +7,9 @@ Task List
 [ ] Destroy lines to non-chosen locations on click
 [x] Add map key
 */
-class Scene2 extends Phaser.Scene {
+class Forest extends Phaser.Scene {
   constructor() {
-    super({ key: 'Scene2' });
+    super({ key: 'Forest' });
   }
   preload() {
     this.load.spritesheet("sheet1", "assets/sprites/32x32sprites1.png", { frameWidth: 32, frameHeight: 32 });
