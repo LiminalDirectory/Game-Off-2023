@@ -99,7 +99,7 @@ class Scene1 extends Phaser.Scene {
     //If a character is chosen, go to next scene
     if (gameState.nextScene) {
       this.scene.stop("Scene1");
-      this.scene.start("Scene2");
+      this.scene.start("Forest");
     };
 
     //If ESC is pressed, go back to the title
