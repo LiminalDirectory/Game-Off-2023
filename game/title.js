@@ -11,7 +11,7 @@ class Title extends Phaser.Scene {
     this.add.sprite(200, 112, "mapBG").setDepth(0);
     
     //Create and style the title
-    let titleText = this.add.text(200, 10, 'Game Title', { fontFamily: 'FiveBySeven', fontSize: '50px', fill: '#051A24', align: "center", lineSpacing: -25 });
+    let titleText = this.add.text(200, 10, "The Serpent's Scale", { fontFamily: 'FiveBySeven', fontSize: '50px', fill: '#051A24', align: "center", lineSpacing: -25 });
     titleText.setOrigin(titleText.halfWidth, 0);
     titleText.setShadow(-6, 6, "#E6994C", 0);
     titleText.setDepth(1);
@@ -25,13 +25,13 @@ class Title extends Phaser.Scene {
     
     //On hover: change color and scale
     playButton.on('pointerover', () => {
-      playButton.setFill("#94b0c2");
+      playButton.setFill("#E6994C");
       playButton.setScale(1.1);
     });
     
     //No hover: reset color and scale
     playButton.on('pointerout', () => {
-      playButton.setFill("#f4f4f4");
+      playButton.setFill("#051A24");
       playButton.setScale(1);
     });
     
