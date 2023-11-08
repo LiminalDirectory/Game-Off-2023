@@ -1,5 +1,5 @@
-//This function has a variable of parameter, which should either be gameState.mapF, gameState.mapC, gameState.mapT, gameState.mapM, or gameState.mapV
-function makeMap(map) {
+//This function returns a 2d array that represents a map
+function makeMap() {
   //Create the map array
   let mapArray = [ 0,0,0,0,2,0,0,0,0,2,0,0,0,0,2,0,0,0,0,6 ];
 
@@ -56,5 +56,5 @@ function makeMap(map) {
     if (mapArray[locations[i]][locationY] === 0) {mapArray[locations[i]][locationY] = 1} else {i--};
   };
 
-  map = mapArray;
+  return mapArray;
 };
