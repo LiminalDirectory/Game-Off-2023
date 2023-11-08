@@ -4,6 +4,8 @@
 const gameState = {
   nextScene: false, //Scene flag for changing to the next scene
   escape: false, //Is set to true in some scene files when the player presses esc
+  currentEvent: 0, //What event the player is at (battle, elite, treasure, shop, etc.)
+  location: 0, //Current location on the map
   mapF: 0, //Will eventually hold the 2d array for the forest map
   mapC: 0, //Will eventually hold the 2d array for the cave map
   mapT: 0, //Will eventually hold the 2d array for the taiga map
