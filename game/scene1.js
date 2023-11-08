@@ -15,7 +15,7 @@ class Scene1 extends Phaser.Scene {
     gameState.snake = this.add.sprite(256, 112, "sheet1").setDepth(2).setScale(2).setFrame(21).setInteractive();
 
     //Create and style the title
-    let titleText = this.add.text(200, 30, "Choose Your Character", { fontFamily: "FiveBySeven", fontSize: "35px", fill: "#051A24", align: "center", lineSpacing: -25 });
+    let titleText = this.add.text(200, 30, " Choose Your Character ", { fontFamily: "FiveBySeven", fontSize: "35px", fill: "#051A24", align: "center", lineSpacing: -25 });
     titleText.setOrigin(titleText.halfWidth, 0);
     titleText.setShadow(-3, 3, "#E6994C", 0);
     titleText.setDepth(1);
