@@ -37,12 +37,12 @@ class Title extends Phaser.Scene {
     
     //On click: start the game
     playButton.on('pointerup', () => {
-      gameState.nextLevel = true;
+      gameState.nextScene = true;
     });
   }
   update() {
-    if (gameState.nextLevel) {
-      gameState.nextLevel = false;
+    if (gameState.nextScene) {
+      gameState.nextScene = false;
       //Start playing the game's music
       //document.querySelector(".music").play(); //Uncomment when music for the game has been created
       this.scene.stop("Title");
