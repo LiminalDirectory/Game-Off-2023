@@ -62,10 +62,11 @@ function makeMap(finalLineArray) {
 
   //I'm really sorry that this code below is going to be really messy. I'll clean it up/optimize it later if I have time.
   lineArray.forEach(function (value, index, array) {
-    if (index === array.length - 1) {break};
     let current = array[index];
     let next = array[index + 1];
-    if (current.length === 1) {
+    if (index === array.length - 1) {
+      console.log("I'm really dumb.");
+    } else if (current.length === 1) {
       next.forEach(function (v, i, a) {current[i] = [index, i]});
     } else if (current.length === 2) {
       if (next.length === 1) {
@@ -109,7 +110,7 @@ function makeMap(finalLineArray) {
           if (randomNumber === 1) {current[3] = [0, 1]} else {current[3] = [2, 1]};
         } else {
           current[2] = [1, 1];
-          if (generateNumber(2, 0) === 1) {
+          if (generateNum(2, 0) === 1) {
             current[3] = [0, 1];
             current[4] = [2, 1];
           } else {
