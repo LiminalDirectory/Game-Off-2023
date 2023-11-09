@@ -32,11 +32,11 @@ class Forest extends Phaser.Scene {
         let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
         gameState.mapF[gameState.location + i].forEach(function (value, index) {
           let event;
-          if (value === 0) {event = battleGroup.create(70 * i, yDistance * index, "sheet1").setFrame(0)};
-          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * index, "sheet1").setFrame(1)};
-          if (value === 3) {event = relicGroup.create(70 * i, yDistance * index, "sheet1").setFrame(3)};
-          if (value === 4) {event = randomGroup.create(70 * i, yDistance * index, "sheet1").setFrame(4)};
-          if (value === 5) {event = shopGroup.create(70 * i, yDistance * index, "sheet1").setFrame(5)};
+          if (value === 0) {event = battleGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(0)};
+          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(1)};
+          if (value === 3) {event = relicGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(3)};
+          if (value === 4) {event = randomGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(4)};
+          if (value === 5) {event = shopGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(5)};
           event.setInteractive();
           //On hover: change color and scale
           event.on('pointerover', () => {
@@ -61,12 +61,12 @@ class Forest extends Phaser.Scene {
         let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
         gameState.mapF[gameState.location + i].forEach(function (value, index) {
           let event;
-          if (value === 0) {event = battleGroup.create(70 * i, yDistance * index, "sheet1").setFrame(0)};
-          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * index, "sheet1").setFrame(1)};
-          if (value === 2) {event = traderGroup.create(70 * i, yDistance * index, "sheet1").setFrame(2)};
-          if (value === 3) {event = relicGroup.create(70 * i, yDistance * index, "sheet1").setFrame(3)};
-          if (value === 4) {event = randomGroup.create(70 * i, yDistance * index, "sheet1").setFrame(4)};
-          if (value === 5) {event = shopGroup.create(70 * i, yDistance * index, "sheet1").setFrame(5)};
+          if (value === 0) {event = battleGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(0)};
+          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(1)};
+          if (value === 2) {event = traderGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(2)};
+          if (value === 3) {event = relicGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(3)};
+          if (value === 4) {event = randomGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(4)};
+          if (value === 5) {event = shopGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(5)};
           event.setInteractive();
           //On hover: change color and scale
           event.on('pointerover', () => {
