@@ -1,11 +1,12 @@
 //This function returns a 2d array that represents a map
-function makeMap() {
+//Honestly, I wouldn't even bother looking at it, and I wouldn't dare edit it if I valued my mental health
+function makeMap(finalLineArray) {
   //Create the map array
-  let mapArray = [ 0,0,0,0,2,0,0,0,0,2,0,0,0,0,2,0,0,0,0,6 ];
+  let mapArray = [ 0,0,0,0,[2],0,0,0,0,[2],0,0,0,0,[2],0,0,0,0,[6] ];
 
   //Randomize the number of paths to choose from (most likely to choose 3 or 4)
-  mapArray.forEach(function (item, index, arr) {
-    arr[index] = [[0,0], [0,0,0], [0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0,0]][Math.floor(Math.random() * 6)];
+  mapArray.forEach(function (value, index, array) {
+    array[index] = [[0,0], [0,0,0], [0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0,0]][Math.floor(Math.random() * 6)];
   });
 
   //Set the constant map values (scale traders and the boss fight)
@@ -55,6 +56,35 @@ function makeMap() {
     let locationY = generateNum(mapArray[locations[i]].length, 0);
     if (mapArray[locations[i]][locationY] === 0) {mapArray[locations[i]][locationY] = 1} else {i--};
   };
+
+  //Begin making the map line array
+  let lineArray = mapArray;
+
+  //I'm really sorry that this code below is going to be really messy. I'll clean it up/optimize it later if I have time.
+  lineArray.forEach(function (value, index, array) {
+    if (index === array.length - 1) {break};
+    let current = array[index];
+    let next = array[index + 1];
+    if (current.length === 1) {
+      next.forEach(function (v, i, a) {current[i] = [index, i]});
+    };
+    if (current.length === 2) {
+      if (next.length === 1) {
+        current.forEach(function (v, i, a) {a[i] = [i, 0]});
+      } else if (next.length === 2) {
+        current[0] = [0, 0];
+        current[1] = [1, 1];
+        let randomNumber = generateNum(2, 0);
+        current[randomNumber] = [randomNumber, Math.abs(randomNumber - 1)];
+      } else if (next.length === 3) {
+        //
+      } else if (next.length === 4) {
+        //
+      } else {
+        //
+      };
+    };
+  });
 
   return mapArray;
 };
