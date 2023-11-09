@@ -29,7 +29,7 @@ class Scene1 extends Phaser.Scene {
     snakeText.setOrigin(snakeText.halfWidth, 0);
     snakeText.setDepth(1);
 
-    //Create player animations & torch animation
+    //Create character animations
     this.anims.create({
       key: 'dragonIdle',
       frames: this.anims.generateFrameNumbers("sheet1", { start: 6, end: 14 }),
@@ -44,12 +44,13 @@ class Scene1 extends Phaser.Scene {
       repeat: 1
     });
 
-    //On hover: change color and scale
+    //On hover: play idle animation and change scale
     gameState.dragon.on('pointerover', () => {
+      gameState.dragon.anims.play("dragonIdle", true);
       gameState.dragon.setScale(2.2);
     });
 
-    //No hover: reset color and scale
+    //No hover: reset scale
     gameState.dragon.on('pointerout', () => {
       gameState.dragon.setScale(2);
     });
@@ -60,8 +61,9 @@ class Scene1 extends Phaser.Scene {
       gameState.nextScene = true;
     });
 
-    //On hover: change color and scale
+    //On hover: play idle animation and change scale
     gameState.snake.on('pointerover', () => {
+      gameState.snake.anims.play("snakeIdle", true);
       gameState.snake.setScale(2.2);
     });
 
@@ -78,24 +80,8 @@ class Scene1 extends Phaser.Scene {
 
     //If ESC is pressed, go back to the title
     this.input.keyboard.on('keydown-ESC', function () {gameState.escape = true});
-
-    //Create 2 counters to be used in the update function in order to play the characters' idle animations at the right times
-    gameState.dragonCounter = 90 + Math.floor(Math.random() * 90);
-    gameState.snakeCounter = 90 + Math.floor(Math.random() * 90);
   }
   update() {
-    //If a certain interval has been reached, play an idle animation
-    gameState.dragonCounter++;
-    gameState.snakeCounter++;
-    if (gameState.dragonCounter >= 180 + Math.floor(Math.random() * 180 - 60)) {
-      gameState.dragon.anims.play("dragonIdle", true);
-      gameState.dragonCounter = 0;
-    };
-    if (gameState.snakeCounter >= 180 + Math.floor(Math.random() * 180 - 60)) {
-      gameState.snake.anims.play("snakeIdle", true);
-      gameState.snakeCounter = 0;
-    };
-
     //If a character is chosen, go to next scene
     if (gameState.nextScene) {
       this.scene.stop("Scene1");
