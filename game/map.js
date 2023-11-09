@@ -5,7 +5,7 @@ function makeMap() {
 
   //Randomize the number of paths to choose from (most likely to choose 3 or 4)
   mapArray.forEach(function (item, index, arr) {
-    arr[index] = [[0,0], [0,0,0], [0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0,0]][Math.floor(Math.random() * 5)];
+    arr[index] = [[0,0], [0,0,0], [0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0,0]][Math.floor(Math.random() * 6)];
   });
 
   //Set the constant map values (scale traders and the boss fight)
@@ -49,7 +49,7 @@ function makeMap() {
   };
 
   //Change 8 battles to elite battles
-  locations = [generateNum(4, 0), generateNum(4, 5), generateNum(4, 10), generateNum(4, 15), generateNum(4, 0), generateNum(4, 5), generateNum(4, 10), generateNum(4, 15)];
+  locations = [generateNum(4, 0), generateNum(4, 5), generateNum(4, 5), generateNum(4, 10), generateNum(4, 10), generateNum(4, 15), generateNum(4, 15), generateNum(4, 15)];
   for (let i = 0; i < 8; i++) {
     if (!mapArray[locations[i]].includes(0)) {continue};
     let locationY = generateNum(mapArray[locations[i]].length, 0);
