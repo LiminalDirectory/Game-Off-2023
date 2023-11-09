@@ -67,24 +67,267 @@ function makeMap(finalLineArray) {
     let next = array[index + 1];
     if (current.length === 1) {
       next.forEach(function (v, i, a) {current[i] = [index, i]});
-    };
-    if (current.length === 2) {
+    } else if (current.length === 2) {
       if (next.length === 1) {
         current.forEach(function (v, i, a) {a[i] = [i, 0]});
       } else if (next.length === 2) {
         current[0] = [0, 0];
         current[1] = [1, 1];
         let randomNumber = generateNum(2, 0);
-        current[randomNumber] = [randomNumber, Math.abs(randomNumber - 1)];
+        if (generateNum(3) === 1) {current[2] = [randomNumber, Math.abs(randomNumber - 1)]};
       } else if (next.length === 3) {
-        //
+        current[0] = [0, 0];
+        current [1] = [1, 2];
+        let randomNumber = generateNum(2, 0);
+        current[2] = [randomNumber, 1];
+        if (generateNum(2, 0) === 1) {current[3] = [Math.abs(randomNumber - 1), 1]};
       } else if (next.length === 4) {
-        //
+        current[0] = [0, 0];
+        current[1] = [0, 1];
+        current[2] = [1, 2];
+        current[3] = [1, 3];
       } else {
-        //
+        current[0] = [0, 0];
+        current[1] = [0, 1];
+        current[2] = [generateNum(2, 0), 2];
+        current[3] = [1, 3];
+        current[4] = [1, 4];
+      };
+    } else if (current.length === 3) {
+      if (next.length === 1) {
+        current.forEach(function (v, i, a) {a[i] = [i, 0]});
+      } else if (next.length === 2) {
+        current[0] = [0, 0];
+        current[1] = [1, generateNum(2, 0)];
+        current[2] = [2, 1];
+      } else if (next.length === 3) {
+        current[0] = [0, 0];
+        current[1] = [2, 2];
+        if (generateNum(2, 0) === 1) {
+          let randomNumber = generateNum(2, 0) * 2 - 1;
+          current[2] = [1, 1 + randomNumber];
+          if (randomNumber === 1) {current[3] = [0, 1]} else {current[3] = [2, 1]};
+        } else {
+          current[2] = [1, 1];
+          if (generateNumber(2, 0) === 1) {
+            current[3] = [0, 1];
+            current[4] = [2, 1];
+          } else {
+            current[3] = [1, 0];
+            current[4] = [1, 2];
+          };
+        };
+      } else if (next.length === 4) {
+        if (generateNum(6, 0) === 0) {
+          current[0] = [0, 0];
+          current[1] = [0, 1];
+          current[2] = [1, 1];
+          current[3] = [1, 2];
+          current[4] = [2, 2];
+          current[5] = [2, 3];
+        } else if (generateNum(2, 0) == 1) {
+          let randomNumber = generateNum(3, 0);
+          current[0] = [0, 0];
+          current[4] = [2, 3];
+          if (randomNumber === 0) {
+            current[1] = [1, 1];
+            current[2] = [1, 2];
+            current[3] = [2, 2];
+          } else if (randomNumber === 1) {
+            current[1] = [0, 1];
+            current[2] = [1, generateNum(2, 1)];
+            current[3] = [2, 2];
+          } else {
+            current[1] = [0, 1];
+            current[2] = [1, 1];
+            current[3] = [1, 2];
+          };
+        } else {
+          current[0] = [0, 0];
+          current[3] = [2, 3];
+          if (generateNum(2, 0) === 1) {
+            current[1] = [1, 1];
+            current[2] = [2, 2];
+          } else {
+            current[1] = [0, 1]
+            current[2] = [1, 2];
+          };
+        };
+      } else {        
+        current[0] = [0, 0];
+        current[1] = [0, 1];
+        current[2] = [1, 2];
+        current[3] = [2, 3];
+        current[4] = [2, 4];
+      };
+    } else if (current.length === 4) {
+      if (next.length === 1) {
+        current.forEach(function (v, i, a) {a[i] = [i, 0]});
+      } else if (next.length === 2) {
+        current[0] = [0, 0];
+        current[1] = [1, 0];
+        current[2] = [2, 1];
+        current[3] = [3, 1];
+      } else if (next.length === 3) {
+        if (generateNum(6, 0) === 0) {
+          current[0] = [0, 0];
+          current[1] = [1, 0];
+          current[2] = [1, 1];
+          current[3] = [2, 1];
+          current[4] = [2, 2];
+          current[5] = [3, 2];
+        } else if (generateNum(2, 0) == 1) {
+          let randomNumber = generateNum(3, 0);
+          current[0] = [0, 0];
+          current[4] = [3, 2];
+          if (randomNumber === 0) {
+            current[1] = [1, 1];
+            current[2] = [1, 1];
+            current[3] = [2, 2];
+          } else if (randomNumber === 1) {
+            current[1] = [1, 0];
+            current[2] = [generateNum(2, 1), 1];
+            current[3] = [2, 2];
+          } else {
+            current[1] = [1, 0];
+            current[2] = [1, 1];
+            current[3] = [2, 1];
+          };
+        } else {
+          current[0] = [0, 0];
+          current[3] = [3, 2];
+          if (generateNum(2, 0) === 1) {
+            current[1] = [1, 1];
+            current[2] = [2, 2];
+          } else {
+            current[1] = [1, 0]
+            current[2] = [2, 1];
+          };
+        };
+      } else if (next.length === 4) {
+        if (generateNum(5, 0) === 1) {
+          current[0] = [0, 0];
+          current[1] = [1, 1];
+          current[2] = [2, 2];
+          current[3] = [3, 3];
+        } else if (generateNum(2, 0) === 1) {
+          current[0] = [0, 0];
+          current[1] = [0, 1];
+          current[2] = [1, 2];
+          current[3] = [2, 3];
+          current[4] = [3, 3];
+        } else {
+          current[0] = [0, 0];
+          current[1] = [1, 0];
+          current[2] = [2, 1];
+          current[3] = [3, 2];
+          current[4] = [3, 3];
+        };
+      } else {
+        if (generateNum(3, 0) === 1) {
+          if (generateNum(2, 0) === 1) {
+            current[0] = [0, 0];
+            current[1] = [1, 1];
+            current[2] = [2, 2];
+            current[3] = [3, 3];
+            current[4] = [3, 4];
+          } else {
+            current[0] = [0, 0];
+            current[1] = [0, 1];
+            current[2] = [1, 2];
+            current[3] = [2, 3];
+            current[4] = [3, 4];
+          };
+        } else {
+          if (generateNum(2, 0) === 1) {          
+            current[0] = [0, 0];          
+            current[1] = [0, 1];          
+            current[2] = [1, 1];          
+            current[3] = [2, 2];          
+            current[4] = [2, 3];          
+            current[5] = [3, 3];          
+            current[6] = [3, 4];
+          } else {          
+            current[0] = [0, 0];          
+            current[1] = [0, 1];          
+            current[2] = [1, 1];          
+            current[3] = [1, 2];          
+            current[4] = [2, 3];
+            current[5] = [3, 3];
+            current[6] = [3, 4];
+          };
+        };
+      };
+    } else if (current.length === 5) {
+      if (next.length === 1) {
+        current.forEach(function (v, i, a) {a[i] = [i, 0]});
+      } else if (next.length === 2) {
+        current[0] = [0, 0];
+        current[1] = [1, 0];
+        current[2] = [2, generateNum(2, 0)];
+        current[3] = [3, 1];
+        current[4] = [4, 1];
+      } else if (next.length === 3) {
+        current[0] = [0, 0];
+        current[1] = [0, 1];
+        current[2] = [1, 2];
+        current[3] = [2, 3];
+        current[4] = [2, 4];
+      } else if (next.length === 4) {
+        if (generateNum(3, 0) === 1) {
+          if (generateNum(2, 0) === 1) {
+            current[0] = [0, 0];
+            current[1] = [1, 1];
+            current[2] = [2, 2];
+            current[3] = [3, 3];
+            current[4] = [4, 3];
+          } else {
+            current[0] = [0, 0];
+            current[1] = [1, 0];
+            current[2] = [2, 1];
+            current[3] = [3, 2];
+            current[4] = [4, 3];
+          };
+        } else {
+          if (generateNum(2, 0) === 1) {          
+            current[0] = [0, 0];          
+            current[1] = [1, 0];          
+            current[2] = [1, 1];          
+            current[3] = [2, 2];          
+            current[4] = [3, 2];          
+            current[5] = [3, 3];          
+            current[6] = [4, 3];
+          } else {          
+            current[0] = [0, 0];          
+            current[1] = [1, 0];          
+            current[2] = [1, 1];          
+            current[3] = [2, 1];          
+            current[4] = [3, 2];
+            current[5] = [3, 3];
+            current[6] = [4, 3];
+          };
+        };
+      } else if (next.length === 5) {
+        current[0] = [0, 0];
+        current[1] = [1, 1];
+        current[2] = [2, 2];
+        current[3] = [3, 3];
+        current[4] = [4, 4];
       };
     };
   });
+
+  if (finalLineArray === 0) {
+    gameState.mapLinesF = lineArray;
+  } else if (finalLineArray === 1) {
+    gameState.mapLinesC = lineArray;
+  } else if (finalLineArray === 2) {
+    gameState.mapLinesT = lineArray;
+  } else if (finalLineArray === 3) {
+    gameState.mapLinesM = lineArray;
+  } else {
+    gameState.mapLinesV = lineArray;
+  }
 
   return mapArray;
 };
