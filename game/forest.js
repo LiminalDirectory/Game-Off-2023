@@ -37,7 +37,8 @@ class Forest extends Phaser.Scene {
           if (value === 3) {event = relicGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(3)};
           if (value === 4) {event = randomGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(4)};
           if (value === 5) {event = shopGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(5)};
-          event.setInteractive();
+          if (i === 1) {event.setInteractive()};
+          
           //On hover: change color and scale
           event.on('pointerover', () => {
             event.setScale(1.1);
