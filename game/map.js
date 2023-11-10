@@ -58,7 +58,7 @@ function makeMap(finalLineArray) {
   };
 
   //Begin making the map line array
-  let lineArray = mapArray;
+  let lineArray = JSON.parse(JSON.stringify(mapArray));
 
   //I'm really sorry that this code below is going to be really messy. I'll clean it up/optimize it later if I have time.
   lineArray.forEach(function (value, index, array) {
