@@ -1,9 +1,8 @@
 /*
 Task List
 [x] Show the upcoming battles, shops, map stuff, etc.
-  [ ] Draw lines between the ones you can and can't go to
-[ ] Animation for returning to the map
-[ ] Enlarge location on hover
+  [x] Draw lines between the ones you can and can't go to
+[x] Enlarge location on hover
 [x] Add map key
 */
 class Forest extends Phaser.Scene {
@@ -22,46 +21,54 @@ class Forest extends Phaser.Scene {
     let eventGroup = this.physics.add.staticGroup();
 
     //I apologize for the spaghetti code, but the two for loops below create the map
-    for (let i = 1; i < 5; i++) {
-      let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
-      gameState.mapF[gameState.location + i].forEach(function (value, index) {
-        let event = eventGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(value);
-        if (gameState.location === -1 && i === 1) {
-          event.setInteractive();
-        } else if (i === 1) {
-          gameState.mapLinesF[gameState.location].forEach(function (v) {
-            if (v[0] === gameState.currentEvent && v[1] === index) {event.setInteractive()};
+    for (let i = 0; i < 5; i++) {
+      if (gameState.location + i > -1) {
+        let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
+        gameState.mapF[gameState.location + i].forEach(function (value, index) {
+          let event = eventGroup.create(70 * i + 20, yDistance * (index + 1), "sheet1").setFrame(value).setDepth(2);
+          if (gameState.location === -1 && i === 1) {
+            event.setInteractive();
+          } else if (i === 1) {
+            gameState.mapLinesF[gameState.location].forEach(function (v) {
+              if (v[0] === gameState.currentEvent && v[1] === index) {event.setInteractive()};
+            });
+          };
+
+          //On hover: change color and scale
+          event.on('pointerover', () => {
+            event.setScale(1.1);
           });
-        };
-        
-        //On hover: change color and scale
-        event.on('pointerover', () => {
-          event.setScale(1.1);
+
+          //No hover: reset color and scale
+          event.on('pointerout', () => {
+            event.setScale(1);
+          });
+
+          //On click: start the game
+          event.on('pointerup', () => {
+            gameState.nextScene = value;
+            gameState.currentEvent = index;
+          });
         });
-        
-        //No hover: reset color and scale
-        event.on('pointerout', () => {
-          event.setScale(1);
-        });
-        
-        //On click: start the game
-        event.on('pointerup', () => {
-          gameState.nextScene = value;
-          gameState.currentEvent = index;
-        });
-      });
+      };
     };
 
-    for (let i = 1; i < 5; i++) {
-      let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
-      if (gameState.location === -1) {
-        gameState.mapLinesF[gameState.location + i].forEach(function (value, index) {
-          if (i === 1 && gameState.location != -1 && gameState.mapF[value[0]] === gameState.currentEvent) {
-            this.add.line(0, 0, 70 * i, yDistance * (gameState.mapF[value[0]] + 1), 70 * (i + 1), yDistance * (gameState.mapF[value[1]] + 1), 0x051A24);
+    for (let i = 0; i < 4; i++) {
+      if (gameState.location + i > -1) {
+        let yDistanceA = 225 / (gameState.mapF[gameState.location + i].length + 1);
+        let yDistanceB = 225 / (gameState.mapF[gameState.location + i + 1].length + 1);
+        gameState.mapLinesF[gameState.location + i].forEach(function (value) {
+          if (i === 0 && value[0] === gameState.currentEvent) {
+            this.add.line(0, 0, 70 * i + 20, yDistanceA * (value[0] + 1), 70 * (i + 1) + 20, yDistanceB * (value[1] + 1), 0x051A24).setOrigin(0, 0);
           } else {
-            this.add.line(0, 0, 70 * i, yDistance * (gameState.mapF[value[0]] + 1), 70 * (i + 1), yDistance * (gameState.mapF[value[1]] + 1), 0x0A4343);
+            this.add.line(0, 0, 70 * i + 20, yDistanceA * (value[0] + 1), 70 * (i + 1) + 20, yDistanceB * (value[1] + 1), 0xE6994C).setOrigin(0, 0);
           };
-        });
+        }, this);
+      } else {
+        let yDistance = 225 / (gameState.mapF[gameState.location + i + 1].length + 1);
+        gameState.mapF[0].forEach(function (value, index) {
+          this.add.line(0, 0, 70 * i + 20, 112.5, 70 * (i + 1) + 20, yDistance * (index + 1), 0x051A24).setOrigin(0, 0);
+        }, this);
       };
     };
 
