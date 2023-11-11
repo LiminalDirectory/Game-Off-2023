@@ -4,7 +4,6 @@ Task List
   [ ] Draw lines between the ones you can and can't go to
 [ ] Animation for returning to the map
 [ ] Enlarge location on hover
-[ ] Destroy lines to non-chosen locations on click
 [x] Add map key
 */
 class Forest extends Phaser.Scene {
@@ -20,70 +19,48 @@ class Forest extends Phaser.Scene {
     this.add.sprite(200, 112, "keyMapBG").setDepth(0);
 
     //Create static groups for each event location
-    let battleGroup = this.physics.add.staticGroup();
-    let eliteGroup = this.physics.add.staticGroup();
-    let traderGroup = this.physics.add.staticGroup();
-    let relicGroup = this.physics.add.staticGroup();
-    let randomGroup = this.physics.add.staticGroup();
-    let shopGroup = this.physics.add.staticGroup();
+    let eventGroup = this.physics.add.staticGroup();
 
-    if (gameState.location === -1) {
-      for (let i = 1; i < 5; i++) {
-        let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
-        gameState.mapF[gameState.location + i].forEach(function (value, index) {
-          let event;
-          if (value === 0) {event = battleGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(0)};
-          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(1)};
-          if (value === 3) {event = relicGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(3)};
-          if (value === 4) {event = randomGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(4)};
-          if (value === 5) {event = shopGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(5)};
-          if (i === 1) {event.setInteractive()};
-          
-          //On hover: change color and scale
-          event.on('pointerover', () => {
-            event.setScale(1.1);
-          });
-    
-          //No hover: reset color and scale
-          event.on('pointerout', () => {
-            event.setScale(1);
-          });
-          
-          //On click: start the game
-          event.on('pointerup', () => {
-            gameState.nextScene = value;
-            gameState.currentEvent = value;
-          });
-        });
-      };
-    } else {
-      this.add.sprite(75, 112, "sheet1").setFrame(gameState.currentEvent);
-      for (let i = 2; i < 5; i++) {
-        let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
-        gameState.mapF[gameState.location + i].forEach(function (value, index) {
-          let event;
-          if (value === 0) {event = battleGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(0)};
-          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(1)};
-          if (value === 2) {event = traderGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(2)};
-          if (value === 3) {event = relicGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(3)};
-          if (value === 4) {event = randomGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(4)};
-          if (value === 5) {event = shopGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(5)};
+    //I apologize for the spaghetti code, but the two for loops below create the map
+    for (let i = 1; i < 5; i++) {
+      let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
+      gameState.mapF[gameState.location + i].forEach(function (value, index) {
+        let event = eventGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(value);
+        if (gameState.location === -1 && i === 1) {
           event.setInteractive();
-          //On hover: change color and scale
-          event.on('pointerover', () => {
-            event.setScale(1.1);
+        } else if (i === 1) {
+          gameState.mapLinesF[gameState.location].forEach(function (v) {
+            if (v[0] === gameState.currentEvent && v[1] === index) {event.setInteractive()};
           });
-    
-          //No hover: reset color and scale
-          event.on('pointerout', () => {
-            event.setScale(1);
-          });
-          
-          //On click: start the game
-          event.on('pointerup', () => {
-            gameState.nextScene = value;
-            gameState.currentEvent = value;
-          });
+        };
+        
+        //On hover: change color and scale
+        event.on('pointerover', () => {
+          event.setScale(1.1);
+        });
+        
+        //No hover: reset color and scale
+        event.on('pointerout', () => {
+          event.setScale(1);
+        });
+        
+        //On click: start the game
+        event.on('pointerup', () => {
+          gameState.nextScene = value;
+          gameState.currentEvent = index;
+        });
+      });
+    };
+
+    for (let i = 1; i < 5; i++) {
+      let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
+      if (gameState.location === -1) {
+        gameState.mapLinesF[gameState.location + i].forEach(function (value, index) {
+          if (i === 1 && gameState.location != -1 && gameState.mapF[value[0]] === gameState.currentEvent) {
+            this.add.line(0, 0, 70 * i, yDistance * (gameState.mapF[value[0]] + 1), 70 * (i + 1), yDistance * (gameState.mapF[value[1]] + 1), 0x051A24);
+          } else {
+            this.add.line(0, 0, 70 * i, yDistance * (gameState.mapF[value[0]] + 1), 70 * (i + 1), yDistance * (gameState.mapF[value[1]] + 1), 0x0A4343);
+          };
         });
       };
     };
