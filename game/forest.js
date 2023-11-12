@@ -1,10 +1,3 @@
-/*
-Task List
-[x] Show the upcoming battles, shops, map stuff, etc.
-  [x] Draw lines between the ones you can and can't go to
-[x] Enlarge location on hover
-[x] Add map key
-*/
 class Forest extends Phaser.Scene {
   constructor() {
     super({ key: 'Forest' });
@@ -96,6 +89,30 @@ class Forest extends Phaser.Scene {
     if (gameState.nextScene === 0) {
       this.scene.stop("Forest");
       this.scene.start("BattleF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("EliteF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("TraderF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("ItemF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("RandomF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("ShopF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("BossF");
     };
 
     //If ESC is pressed, go back to the title
