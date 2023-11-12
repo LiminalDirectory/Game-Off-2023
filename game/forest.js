@@ -1,12 +1,3 @@
-/*
-Task List
-[x] Show the upcoming battles, shops, map stuff, etc.
-  [ ] Draw lines between the ones you can and can't go to
-[ ] Animation for returning to the map
-[ ] Enlarge location on hover
-[ ] Destroy lines to non-chosen locations on click
-[x] Add map key
-*/
 class Forest extends Phaser.Scene {
   constructor() {
     super({ key: 'Forest' });
@@ -20,70 +11,57 @@ class Forest extends Phaser.Scene {
     this.add.sprite(200, 112, "keyMapBG").setDepth(0);
 
     //Create static groups for each event location
-    let battleGroup = this.physics.add.staticGroup();
-    let eliteGroup = this.physics.add.staticGroup();
-    let traderGroup = this.physics.add.staticGroup();
-    let relicGroup = this.physics.add.staticGroup();
-    let randomGroup = this.physics.add.staticGroup();
-    let shopGroup = this.physics.add.staticGroup();
+    let eventGroup = this.physics.add.staticGroup();
 
-    if (gameState.location === -1) {
-      for (let i = 1; i < 5; i++) {
+    //I apologize for the spaghetti code, but the two for loops below create the map
+    for (let i = 0; i < 5; i++) {
+      if (gameState.location + i > -1) {
         let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
         gameState.mapF[gameState.location + i].forEach(function (value, index) {
-          let event;
-          if (value === 0) {event = battleGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(0)};
-          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(1)};
-          if (value === 3) {event = relicGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(3)};
-          if (value === 4) {event = randomGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(4)};
-          if (value === 5) {event = shopGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(5)};
-          event.setInteractive();
+          let event = eventGroup.create(70 * i + 20, yDistance * (index + 1), "sheet1").setFrame(value).setDepth(2);
+          if (gameState.location === -1 && i === 1) {
+            event.setInteractive();
+          } else if (i === 1) {
+            gameState.mapLinesF[gameState.location].forEach(function (v) {
+              if (v[0] === gameState.currentEvent && v[1] === index) {event.setInteractive()};
+            });
+          };
+
           //On hover: change color and scale
           event.on('pointerover', () => {
             event.setScale(1.1);
           });
-    
+
           //No hover: reset color and scale
           event.on('pointerout', () => {
             event.setScale(1);
           });
-          
+
           //On click: start the game
           event.on('pointerup', () => {
             gameState.nextScene = value;
-            gameState.currentEvent = value;
+            gameState.currentEvent = index;
           });
         });
       };
-    } else {
-      this.add.sprite(75, 112, "sheet1").setFrame(gameState.currentEvent);
-      for (let i = 2; i < 5; i++) {
-        let yDistance = 225 / (gameState.mapF[gameState.location + i].length + 1);
-        gameState.mapF[gameState.location + i].forEach(function (value, index) {
-          let event;
-          if (value === 0) {event = battleGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(0)};
-          if (value === 1) {event = eliteGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(1)};
-          if (value === 2) {event = traderGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(2)};
-          if (value === 3) {event = relicGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(3)};
-          if (value === 4) {event = randomGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(4)};
-          if (value === 5) {event = shopGroup.create(70 * i, yDistance * (index + 1), "sheet1").setFrame(5)};
-          event.setInteractive();
-          //On hover: change color and scale
-          event.on('pointerover', () => {
-            event.setScale(1.1);
-          });
-    
-          //No hover: reset color and scale
-          event.on('pointerout', () => {
-            event.setScale(1);
-          });
-          
-          //On click: start the game
-          event.on('pointerup', () => {
-            gameState.nextScene = value;
-            gameState.currentEvent = value;
-          });
-        });
+    };
+
+    for (let i = 0; i < 4; i++) {
+      if (gameState.location + i > -1) {
+        let yDistanceA = 225 / (gameState.mapF[gameState.location + i].length + 1);
+        let yDistanceB = 225 / (gameState.mapF[gameState.location + i + 1].length + 1);
+        gameState.mapLinesF[gameState.location + i].forEach(function (value) {
+          if (i === 0 && value[0] === gameState.currentEvent) {
+            this.add.line(0, 0, 70 * i + 20, yDistanceA * (value[0] + 1), 70 * (i + 1) + 20, yDistanceB * (value[1] + 1), 0x051A24).setOrigin(0, 0);
+          } else {
+            this.add.line(0, 0, 70 * i + 20, yDistanceA * (value[0] + 1), 70 * (i + 1) + 20, yDistanceB * (value[1] + 1), 0xE6994C).setOrigin(0, 0);
+          };
+        }, this);
+      } else {
+        let yDistance = 225 / (gameState.mapF[gameState.location + i + 1].length + 1);
+        gameState.mapF[0].forEach(function (value, index) {
+          this.add.line(0, 0, 70 * i + 20, 112.5, 70 * (i + 1) + 20, yDistance * (index + 1), 0x051A24).setOrigin(0, 0);
+        }, this);
       };
     };
 
@@ -111,6 +89,30 @@ class Forest extends Phaser.Scene {
     if (gameState.nextScene === 0) {
       this.scene.stop("Forest");
       this.scene.start("BattleF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("EliteF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("TraderF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("ItemF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("RandomF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("ShopF");
+    };
+    if (gameState.nextScene === 0) {
+      this.scene.stop("Forest");
+      this.scene.start("BossF");
     };
 
     //If ESC is pressed, go back to the title

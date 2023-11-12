@@ -10,10 +10,10 @@ function makeMap(finalLineArray) {
   });
 
   //Set the constant map values (scale traders and the boss fight)
-  mapArray[4] = [3];
-  mapArray[9] = [3];
-  mapArray[14] = [3];
-  mapArray[19] = [7];
+  mapArray[4] = [2];
+  mapArray[9] = [2];
+  mapArray[14] = [2];
+  mapArray[19] = [6];
 
   //Random number generator for more readiblity
   function generateNum(multiplier, adder) {return Math.floor(Math.random() * multiplier + adder)};
@@ -57,8 +57,8 @@ function makeMap(finalLineArray) {
     if (mapArray[locations[i]][locationY] === 0) {mapArray[locations[i]][locationY] = 1} else {i--};
   };
 
-  //Begin making the map line array
-  let lineArray = mapArray;
+  //Copy the map array in a way that won't break the code
+  let lineArray = JSON.parse(JSON.stringify(mapArray));
 
   //I'm really sorry that this code below is going to be really messy. I'll clean it up/optimize it later if I have time.
   lineArray.forEach(function (value, index, array) {
@@ -67,7 +67,7 @@ function makeMap(finalLineArray) {
     if (index === array.length - 1) {
       console.log("I'm really dumb.");
     } else if (current.length === 1) {
-      next.forEach(function (v, i, a) {current[i] = [index, i]});
+      next.forEach(function (v, i, a) {current[i] = [0, i]});
     } else if (current.length === 2) {
       if (next.length === 1) {
         current.forEach(function (v, i, a) {a[i] = [i, 0]});
@@ -270,10 +270,10 @@ function makeMap(finalLineArray) {
         current[4] = [4, 1];
       } else if (next.length === 3) {
         current[0] = [0, 0];
-        current[1] = [0, 1];
-        current[2] = [1, 2];
-        current[3] = [2, 3];
-        current[4] = [2, 4];
+        current[1] = [1, 0];
+        current[2] = [2, 1];
+        current[3] = [3, 2];
+        current[4] = [4, 2];
       } else if (next.length === 4) {
         if (generateNum(3, 0) === 1) {
           if (generateNum(2, 0) === 1) {
@@ -291,18 +291,18 @@ function makeMap(finalLineArray) {
           };
         } else {
           if (generateNum(2, 0) === 1) {          
-            current[0] = [0, 0];          
-            current[1] = [1, 0];          
-            current[2] = [1, 1];          
-            current[3] = [2, 2];          
-            current[4] = [3, 2];          
-            current[5] = [3, 3];          
+            current[0] = [0, 0];  
+            current[1] = [1, 0];
+            current[2] = [1, 1];
+            current[3] = [2, 2];
+            current[4] = [3, 2];
+            current[5] = [3, 3];
             current[6] = [4, 3];
           } else {          
-            current[0] = [0, 0];          
-            current[1] = [1, 0];          
-            current[2] = [1, 1];          
-            current[3] = [2, 1];          
+            current[0] = [0, 0];
+            current[1] = [1, 0];
+            current[2] = [1, 1];
+            current[3] = [2, 1];
             current[4] = [3, 2];
             current[5] = [3, 3];
             current[6] = [4, 3];
