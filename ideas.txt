@@ -48,4 +48,26 @@ Scale Trader: The same as the shop, except the price is in scales rather than go
 
 Dragon Starting Cards:
 - (cost) Card Name, Rarity Color (white < blue < yellow < red): effect
-- [start with 4] (1) Arcane Shield, White: Add 5 block
+- [start with 4] (1) Arcane Shield, White: Gain 5 block
+- [start with 4] (1) Arcane Bolt, White: Deal 8 damage
+- [start with 2] (2) Flaming Fist, Blue: Deal 12 fire damage. Gain 3 fury
+Other Dragon Cards:
+- (0) Deja Vu, Blue: Make a fragile copy of a card from your discard pile in your hand
+- (0) Calming Breath, Yellow: Gain 2 energy. Gain 10 slow
+- (1) Spark Strike, White: Deal 9 electric Damage
+- (1) Frost Beam, White: Deal 9 ice damage
+- (1) Sickness, White: Add 5 poison to target
+- (1) Absorbing Strike, Blue: Deal 6 damage. Gain 5 regen
+- (2) Healing Field, Blue: Gain 1 regen for every 5 block you have
+- (2) Spiked Shield, Yellow: Gain 3 spikes for every 5 block you have
+- (2) Lightning Fist, Blue: Deal 14 electric damage. Add 1 stunto target
+- (2) Virus, Blue: Add 8 poison to all enemies
+- (2) Magnify, Red: Double each enemy's statuses
+- (3) Multiply, Yellow: Create 3 fragile copies of a card from your discard pile in your draw pile
+- (3) Raging Strike, Yellow: Deal 10 damage. Gain enraged
+- (3) Flame Kick, Yellow: Deal 18 fire damage. Gain 6 fury
+- (3) Ligning Bolt, Red: Deal 20 electric damage. Add 2 stun to target
+- (3) Arcane Armor, Red: Gain 10 block. Add defensive to self
+- (3) Cursed Flames, Yellow: Deal 12 damage to all enemies. Add 6 poison to all enemies
+- (4) Frost Cloud, Red: Deal 10 ice damage to all enemies. Add 10 slow to all enemies
+- (5) Static Field, Red: Deal 10 electric damage to all enemies. Add 3 stun to all enemies
